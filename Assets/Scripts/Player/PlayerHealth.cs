@@ -9,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
     bool isInvulnerable = false;
     SpriteRenderer[] sprites;
 
+    public GameObject gameOverUi;
+
     private Animator animator;
     void Start()
     {
@@ -40,7 +42,10 @@ public class PlayerHealth : MonoBehaviour
     {
         animator.SetBool("LIVE", false);
         Debug.Log("El jugador murió");
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
+        //Time.timeScale = 0;
+        gameOverUi.SetActive(true);
+        GameOverUi.instance.ShowGameOver();
     }
 
     IEnumerator Invulnerability()

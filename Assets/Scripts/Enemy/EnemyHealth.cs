@@ -53,7 +53,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (player != null)
         {
-            player.TakeDamage(1);
+            player.TakeDamage(10);
             Destroy(gameObject);
 
         }
