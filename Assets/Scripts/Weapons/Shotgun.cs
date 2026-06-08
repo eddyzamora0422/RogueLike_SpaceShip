@@ -5,7 +5,7 @@ public class Shotgun : WeaponBase
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    public int pelletCount = 5;      // cuántas balas dispara
+    //public int pelletCount;      // cuántas balas dispara
     public float spreadAngle = 30f;  // apertura del disparo
 
     TurretRecoil recoil;
@@ -18,10 +18,11 @@ public class Shotgun : WeaponBase
 
     protected override void Shoot()
     {
-        float angleStep = spreadAngle / (pelletCount - 1);
+        float angleStep = spreadAngle / (projectiles - 1);
         float startAngle = -spreadAngle / 2;
+        //pelletCount = projectiles;
 
-        for (int i = 0; i < pelletCount; i++)
+        for (int i = 0; i < projectiles; i++)
         {
             float angle = startAngle + (angleStep * i);
 

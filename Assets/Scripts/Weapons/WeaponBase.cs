@@ -15,6 +15,9 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void TryShoot()
     {
+        //Verifica la bandera de pausa antes de disparar. GameManager is paused.
+        if (GameManager.isPaused) return; 
+   
         if (Time.time >= lastShot + fireRate)
         {
             Shoot();

@@ -22,6 +22,11 @@ public class BackGroundMovement : MonoBehaviour
 
     private void Update()
     {
+        
+        if (jugadorRB == null) {
+            return;
+        }
+
         Vector3 movement = jugadorRB.position - lastPlayerPosition;
 
         offset = (Vector2)movement * velocidadMovimiento;

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 397b8ae497c9316449dbfeeb818c495b, type: 3}
-  m_Name: ShotGun Projectibles
+  m_Name: MG FR
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: Mas proyectiles escopeta
-  description: agrega 2 proyectiles
+  upgradeName: Fire Rate MG
+  description: "Dispara un poco m\xE1s rapido"
   type: 0
   rarity: 0
   targetWeapon: 0
   damageMultiplier: 1
   fireRateMultiplier: 1
-  addProjectiles: 2
+  addProjectiles: 1

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 397b8ae497c9316449dbfeeb818c495b, type: 3}
-  m_Name: Machine Gun Projectibles
+  m_Name: SG PRD
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
-  upgradeName: Machine Gun Projectibles
-  description: + Projectibles
+  upgradeName: + Perdigones SG
+  description: Agrega +1 proyectiles a la escopeta
   type: 0
   rarity: 0
-  targetWeapon: 0
+  targetWeapon: 1
   damageMultiplier: 1
   fireRateMultiplier: 1
   addProjectiles: 1

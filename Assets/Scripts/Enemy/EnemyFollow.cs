@@ -19,7 +19,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
-        void Update()
+    void Update()
     {
         if (player == null)
             return;

@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     public float xpToNextLevel = 10;
 
     public GameObject player;
+    public GameObject pauseMenu;
 
+    public static bool isPaused = false;    //Flag pause
+    public static bool isUpgradePanel = false;  //Flag upgradePanel
 
     void Update()
     {
@@ -20,6 +23,28 @@ public class GameManager : MonoBehaviour
         {
             ShowUpgradeScreen();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeInHierarchy)
+            {
+                pauseMenu.SetActive(false);
+                isPaused = false;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                isPaused = true;
+            }
+        }
+
+        if (upgradePanel.activeInHierarchy)
+        {
+            isPaused = true;
+        }
+
+        isRun(isPaused);
+        
     }
     void Awake()
     {
@@ -61,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     void ShowUpgradeScreen()
     {
-        Time.timeScale = 0;
+        isPaused = true;
 
         upgradePanel.SetActive(true);
 
@@ -70,5 +95,18 @@ public class GameManager : MonoBehaviour
         List<Upgrade> upgrades = UpgradeManager.instance.GetRandomUpgrades(player, 3);
 
         UpgradeUI.instance.Show(upgrades);
+    }
+
+    void isRun(bool request)
+    {
+        if (request) 
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+        
     }
 }

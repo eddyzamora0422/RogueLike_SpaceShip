@@ -5,11 +5,9 @@ public class MissileBarrage : WeaponBase
     public GameObject missilePrefab;
     public Transform firePoint;
 
-    public int missileCount = 6;
-
     protected override void Shoot()
     {
-        for (int i = 0; i < missileCount; i++)
+        for (int i = 0; i < projectiles; i++)
         {
             float angle = Random.Range(-25f, 25f);
 

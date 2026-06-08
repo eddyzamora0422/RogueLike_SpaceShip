@@ -40,7 +40,7 @@ public class GameOverUi : MonoBehaviour
     SetAlpha(0.90f); // asegura que termine exacto
 }
 
-public void SetAlpha(float targetAlpha)
+    public void SetAlpha(float targetAlpha)
     {
         if (panelColor != null) { 
             Color tempColor = panelColor.color;
@@ -49,4 +49,13 @@ public void SetAlpha(float targetAlpha)
         }
     }
 
+    public void RestartButtom()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

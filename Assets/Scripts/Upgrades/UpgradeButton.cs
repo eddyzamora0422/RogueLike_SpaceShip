@@ -20,8 +20,9 @@ public class UpgradeButton : MonoBehaviour
     {
         currentUpgrade.ApplyUpgrade(GameObject.FindGameObjectWithTag("Player"));
 
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
 
         GameManager.instance.upgradePanel.SetActive(false);
+        GameManager.isPaused = false;
     }
 }
