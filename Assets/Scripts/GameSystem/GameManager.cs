@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI timerText;
     public static GameManager instance;
 
     public int coins;
@@ -13,30 +16,44 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public GameObject pauseMenu;
+    public GameObject gameOverUi;
 
     public static bool isPaused = false;    //Flag pause
-    public static bool isUpgradePanel = false;  //Flag upgradePanel
+    //public static bool isUpgradePanel = false;  //Flag upgradePanel
+    public static bool isGameOver = false;
+
+    private float gameTimer = 0f;
 
     void Update()
     {
+        if (!isGameOver && !isPaused)
+        {
+            gameTimer += Time.deltaTime;
+            UpdateTimeDisplay();
+        }
+        
         if (Input.GetKeyDown(KeyCode.L))
         {
             ShowUpgradeScreen();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!gameOverUi.activeInHierarchy)
         {
-            if (pauseMenu.activeInHierarchy)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                pauseMenu.SetActive(false);
-                isPaused = false;
-            }
-            else
-            {
-                pauseMenu.SetActive(true);
-                isPaused = true;
+                if (pauseMenu.activeInHierarchy)
+                {
+                    pauseMenu.SetActive(false);
+                    isPaused = false;
+                }
+                else
+                {
+                    pauseMenu.SetActive(true);
+                    isPaused = true;
+                }
             }
         }
+        
 
         if (upgradePanel.activeInHierarchy)
         {
@@ -108,5 +125,13 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
         
+    }
+
+    void UpdateTimeDisplay()
+    {
+        int minutes = Mathf.FloorToInt(gameTimer / 60);
+        int seconds = Mathf.FloorToInt(gameTimer % 60);
+
+        timerText.text = $"{minutes:00}:{seconds:00}";
     }
 }

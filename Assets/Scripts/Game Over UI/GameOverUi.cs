@@ -20,6 +20,8 @@ public class GameOverUi : MonoBehaviour
         panelColor = GetComponent<Image>();
 
         SetAlpha(0f);
+        //GameManager.isPaused = true;
+        GameManager.isGameOver = true;
     }
 
     public void ShowGameOver() {
@@ -52,10 +54,14 @@ public class GameOverUi : MonoBehaviour
     public void RestartButtom()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //GameManager.isPaused = false;
+        GameManager.isGameOver = false;
     }
 
     public void MainMenuScene()
     {
         SceneManager.LoadScene("MainMenu");
+        //GameManager.isPaused = false;
+        GameManager.isGameOver = false;
     }
 }
