@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     //public static bool isUpgradePanel = false;  //Flag upgradePanel
     public static bool isGameOver = false;
 
-    private float gameTimer = 0f;
+    public float gameTimer = 0f;
 
     void Update()
     {

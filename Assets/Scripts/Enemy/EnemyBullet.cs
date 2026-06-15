@@ -1,20 +1,15 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public float speed = 12f;
     public float lifeTime = 3f;
     public float damage = 1;
-
-    public int enemiesTouch = 0;
-    public bool pierce = false;
-
     float lifeTimer;
 
     void OnEnable()
     {
         lifeTimer = lifeTime;
-        enemiesTouch = 0;
     }
 
     void Update()
@@ -36,18 +31,15 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        EnemyHealth enemy = other.GetComponent<EnemyHealth>();
+        PlayerHealth player = other.GetComponent<PlayerHealth>();
 
-        if (enemy == null)
+        if (player == null)
             return;
 
-        enemy.TakeDamage(damage);
+        player.TakeDamage((int)damage);
 
-        enemiesTouch++;
-
-        if (!pierce || enemiesTouch >= 2)
-        {
-            gameObject.SetActive(false);
-        }
+     
+        gameObject.SetActive(false);
+       
     }
 }

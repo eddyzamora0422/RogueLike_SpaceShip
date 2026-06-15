@@ -18,6 +18,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        print("el enemigo si recibio daño");
         health -= damage;
 
         if (health <= 0)
@@ -53,9 +54,8 @@ public class EnemyHealth : MonoBehaviour
 
         if (player != null)
         {
-            player.TakeDamage(10);
+            player.TakeDamage(1);
             Destroy(gameObject);
-
         }
     }
 }

@@ -1,20 +1,27 @@
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject bossPrefab;
 
-    public float spawnRate = 2f;
+    public float baseSpawnRate = 2f;
+    public float minSpawnRate = 0.3f;
+    public float spawnRate;
     float timer;
 
     public float spawnOffset = 2f;
+    public static bool bossTime = false;
 
     Transform player;
+    //Transform boss;
     Camera cam;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        //boss = GameObject.FindGameObjectWithTag("Boss")?.transform;
         cam = Camera.main;
     }
 
@@ -22,19 +29,24 @@ public class EnemySpawner : MonoBehaviour
     {
         if (player == null) return;
 
-        timer += Time.deltaTime;
+        UpdateSpawnRate();
 
-        if (timer >= spawnRate)
+        timer += Time.deltaTime;
+        if (timer >= spawnRate && GameManager.instance.gameTimer < 600f)
         {
             SpawnEnemy();
+            //SpawnBoss();
             timer = 0;
+        }else if (!bossTime && GameManager.instance.gameTimer > 599f)
+        {
+            SpawnBoss();
+            bossTime = true;
         }
     }
 
     void SpawnEnemy()
     {
         Vector3 spawnPos = GetSpawnPosition();
-
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
     }
 
@@ -67,5 +79,23 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return spawnPos;
+    }
+
+    void UpdateSpawnRate()
+    {
+        float gameTime = GameManager.instance.gameTimer;
+
+        //cada 120 segundos (2min) reduce el spawnrate
+        int intervals = Mathf.FloorToInt(gameTime / 120f);
+        float reduction = intervals * 0.3f; // cuánto reduce por intervalo
+
+        spawnRate = Mathf.Max(minSpawnRate, baseSpawnRate - reduction);
+    }
+
+    void SpawnBoss()
+    {
+
+        Vector3 spawnPos = GetSpawnPosition();
+        Instantiate(bossPrefab, spawnPos, Quaternion.identity);
     }
 }

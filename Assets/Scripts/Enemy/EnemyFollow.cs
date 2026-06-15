@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class EnemyFollow : MonoBehaviour
 {
     public float speed = 2f;
 

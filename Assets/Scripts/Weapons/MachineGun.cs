@@ -30,8 +30,8 @@ public class MachineGun : WeaponBase
 
         for (int i = 0; i < projectiles; i++)
         {
-            Vector3 offset = firePoint.right * ((i - (projectiles - 1) / 2f) * projectileSpacing); 
-            
+            Vector3 offset = firePoint.right * ((i - (projectiles - 1) / 2f) * projectileSpacing);
+
             GameObject bullet = BulletPool.instance.GetBullet();
 
             bullet.transform.position = firePoint.position + offset;
