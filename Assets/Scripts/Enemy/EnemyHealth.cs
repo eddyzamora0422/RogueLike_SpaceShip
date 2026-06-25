@@ -33,17 +33,15 @@ public class EnemyHealth : MonoBehaviour
         dead = true;
 
         EnemyManager.instance.RemoveEnemy(transform);
-        //FindObjectOfType<CameraShake>().Shake(0.5f, 1f);
-
-        /*
-        Instantiate(xpPrefab, (Vector2)transform.position + Random.insideUnitCircle * 0.5f, Quaternion.identity);
-
-        Vector2 offset = Random.insideUnitCircle * 0.5f;
-
-        Instantiate(coinPrefab, (Vector2)transform.position + offset, Quaternion.identity);*/
-
+        
         Instantiate(coinPrefab, transform.position, Quaternion.identity);
         Instantiate(xpPrefab, transform.position, Quaternion.identity);
+
+        if (Boss.bossIsAlive)
+        {
+            Boss.bossIsAlive = false;
+            GameManager.isVictory = true;
+        }
 
         Destroy(gameObject);
     }

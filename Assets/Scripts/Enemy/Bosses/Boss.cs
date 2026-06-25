@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -10,11 +11,14 @@ public class Boss : WeaponBase
     public float spreadAngle = 3f;
     public float projectileSpacing = 0.2f;
 
+    public static bool bossIsAlive = false;
+
     Transform player;
     
     void Start()
     {
-        
+        bossIsAlive = true;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         if (player == null)
         {

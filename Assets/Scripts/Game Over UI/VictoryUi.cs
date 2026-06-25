@@ -1,30 +1,25 @@
-using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using UnityEngine.UI;
 
-public class GameOverUi : MonoBehaviour
-{
-    public static GameOverUi instance;
-    private Image panelColor;
 
+public class VictoryUi : MonoBehaviour
+{
+    public static VictoryUi instance;
+
+    private Image panelColor;
     [SerializeField] private float fadeDuration = 1.5f; // cuanto dura el fade
 
 
-    void Awake()
+    private void Start()
     {
-        //Time.timeScale = 0;
         instance = this;
-
-        panelColor = GetComponent<Image>();
-
-        SetAlpha(0f);
-        //GameManager.isPaused = true;
-        GameManager.isGameOver = true;
     }
 
-    public void ShowGameOver() {
+    public void ShowGameOver()
+    {
         StartCoroutine(FadeIn());
     }
 
@@ -32,7 +27,8 @@ public class GameOverUi : MonoBehaviour
     {
         float elapsed = 0f; // tiempo transcurrido
 
-        while (elapsed < fadeDuration) { 
+        while (elapsed < fadeDuration)
+        {
             elapsed += Time.unscaledDeltaTime; // usa tiempo real, ignora timeScale = 0
             float alpha = Mathf.Lerp(0f, 0.90f, elapsed / fadeDuration); // va de 0 a 0.8
             SetAlpha(alpha);
@@ -44,24 +40,20 @@ public class GameOverUi : MonoBehaviour
 
     public void SetAlpha(float targetAlpha)
     {
-        if (panelColor != null) { 
+        if (panelColor != null)
+        {
             Color tempColor = panelColor.color;
             tempColor.a = targetAlpha;
-            panelColor.color = tempColor; 
+            panelColor.color = tempColor;
         }
     }
 
-    public void RestartButtom()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //GameManager.isPaused = false;
-        GameManager.isGameOver = false;
-    }
-
-    public void MainMenuScene()
+    public void MainMenuButtom()
     {
         SceneManager.LoadScene("MainMenu");
-        //GameManager.isPaused = false;
-        GameManager.isGameOver = false;
+        GameManager.isPaused = false;
+        GameManager.isVictory = false;
+        GameManager.instance.gameTimer = 0;
+        EnemySpawner.bossTime = false;
     }
 }

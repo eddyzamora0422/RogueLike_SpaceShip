@@ -17,10 +17,12 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject pauseMenu;
     public GameObject gameOverUi;
+    public GameObject victoryPanel;
 
     public static bool isPaused = false;    //Flag pause
     //public static bool isUpgradePanel = false;  //Flag upgradePanel
     public static bool isGameOver = false;
+    public static bool isVictory = false;
 
     public float gameTimer = 0f;
 
@@ -37,27 +39,36 @@ public class GameManager : MonoBehaviour
             ShowUpgradeScreen();
         }
 
-        if (!gameOverUi.activeInHierarchy)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
+        if (!victoryPanel.activeInHierarchy) 
+        { 
+            if (!gameOverUi.activeInHierarchy)
             {
-                if (pauseMenu.activeInHierarchy)
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    pauseMenu.SetActive(false);
-                    isPaused = false;
-                }
-                else
-                {
-                    pauseMenu.SetActive(true);
-                    isPaused = true;
+                    if (pauseMenu.activeInHierarchy)
+                    {
+                        pauseMenu.SetActive(false);
+                        isPaused = false;
+                    }
+                    else
+                    {
+                        pauseMenu.SetActive(true);
+                        isPaused = true;
+                    }
                 }
             }
         }
+        
         
 
         if (upgradePanel.activeInHierarchy)
         {
             isPaused = true;
+        }
+
+        if (isVictory && !victoryPanel.activeInHierarchy)
+        {
+            ShowVictoryPanel();
         }
 
         isRun(isPaused);
@@ -133,5 +144,11 @@ public class GameManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(gameTimer % 60);
 
         timerText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    public void ShowVictoryPanel()
+    {
+        isPaused = true;
+        victoryPanel.SetActive(true);
     }
 }
