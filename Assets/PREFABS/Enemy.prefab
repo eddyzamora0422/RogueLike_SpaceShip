@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 6076176977389814930}
   - component: {fileID: 2203666593834277730}
   - component: {fileID: 3721340468252104450}
-  - component: {fileID: 1826093096788002983}
-  - component: {fileID: -1016630554113197575}
+  - component: {fileID: -6819251774354138257}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -38,6 +37,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6076176977389814930
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -83,6 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -7549170938866561748, guid: d2dbb1031f35d1a4ca4a560578d44aac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -92,7 +93,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &2203666593834277730
 Rigidbody2D:
@@ -167,7 +167,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1826093096788002983
+--- !u!114 &-6819251774354138257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,22 +176,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637797989272074637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d52ab0c2aeb3a4499546319bafbca57, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bc802424e0574444b45f80ea5f1a02a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyKamikaze
   health: 3
+  speed: 2
+  damage: 1
   xpPrefab: {fileID: 4433603308031130165, guid: 35ab8e8f945d5b747b00856f3ed9ef8d, type: 3}
   coinPrefab: {fileID: 4750534935658149044, guid: 6821431a509149d4f91843ca115d1336, type: 3}
---- !u!114 &-1016630554113197575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637797989272074637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ca0a9178cb8b7c4eb3729dc21bcaa6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  speed: 2
