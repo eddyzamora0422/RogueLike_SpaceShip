@@ -5,6 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject bossPrefab;
+    public GameObject enemySwarm;
 
     public float baseSpawnRate = 2f;
     public float minSpawnRate = 0.3f;
@@ -35,7 +36,6 @@ public class EnemySpawner : MonoBehaviour
         if (timer >= spawnRate && GameManager.instance.gameTimer < 600f)
         {
             SpawnEnemy();
-            //SpawnBoss();
             timer = 0;
         }else if (!bossTime && GameManager.instance.gameTimer > 599f)
         {
@@ -47,7 +47,29 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         Vector3 spawnPos = GetSpawnPosition();
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        float timeGame = GameManager.instance.gameTimer;
+
+        if (timeGame < 120f)
+        {
+            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        }
+        else
+        {
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            }
+            else
+            {
+                int cantidad = Random.Range(2, 5);
+                for (int i = 0; i < cantidad; i++)
+                {
+                    Vector3 offset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+                    Instantiate(enemySwarm, spawnPos + offset, Quaternion.identity);
+                }
+            }
+        }
     }
 
     Vector3 GetSpawnPosition()
