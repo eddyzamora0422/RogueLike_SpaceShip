@@ -33,6 +33,8 @@ public class BackGroundMovement : MonoBehaviour
 
         material.mainTextureOffset += offset;
 
+        transform.position = jugadorRB.position;
+
         lastPlayerPosition = jugadorRB.position;
     }
 }

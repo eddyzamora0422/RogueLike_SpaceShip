@@ -1,0 +1,82 @@
+[33mcommit d393b464d25ee4f9e2f767de9a9d665e30b37c71[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Sat Jun 27 01:30:50 2026 -0500
+
+    feat(enemy): add EnemySwarm with wave spawning
+    
+    - Add EnemySwarm script inheriting EnemyBase
+    - Add wave spawning logic in EnemySpawner for groups of 2-4 swarm enemies
+    - Swarm enemies spawn after minute 2 with random offset per unit
+    - Fix Random.Range being evaluated each loop iteration
+
+[33mcommit ddb349313593ee414fd5ea9d87f08c73caebb79e[m[33m ([m[1;32mrefactor/enemy-base[m[33m)[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Fri Jun 26 01:56:03 2026 -0500
+
+    refactor(enemy): add EnemyBase abstract class and EnemyKamikaze
+    
+    - Add EnemyBase with health, movement, damage and loot logic
+    - Add EnemyKamikaze inheriting EnemyBase
+    - Refactor Boss to inherit EnemyBase instead of WeaponBase
+    - Remove EnemyFollow and EnemyHealth scripts
+
+[33mcommit 5d9892c29deb22d9830522680e379099aa7458b5[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Thu Jun 25 01:13:08 2026 -0500
+
+    feat(ui): add victory screen and fix scene reset on main menu
+    
+    - Add VictoryUI with victory panel and show method
+    - Detect boss death and trigger victory screen
+    - Fix isPaused, isVictory, gameTimer and bossTime not resetting on scene reload
+
+[33mcommit eb7f491aa85d851d3a2c5942481f8071344d85f1[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Mon Jun 15 01:11:39 2026 -0500
+
+    feat(boss): add boss enemy with projectiles and separate bullet pools
+    
+    - Add Boss script with movement, stopping distance and shooting
+    - Add EnemyBulletPool and EnemyBullet for enemy projectiles
+    - Separate player and enemy bullet pools to avoid collision conflicts
+    - Fix bullet damage targeting by removing isEnemyBullet flag
+
+[33mcommit 526d19d2b97751ef0495e71dde539b7140843c28[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Thu Jun 11 00:27:12 2026 -0500
+
+    feat(gameplay): add run timer and fix pause system
+    
+    - Add visible run timer to GameManager
+    - Fix timer continuing during game over and pause
+    - Separate isPaused and isGameOver flags to avoid freezing death animation
+    - Prevent Escape input while game over panel is active
+
+[33mcommit 2341636417f7a8ce00966017f356c798babac230[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Sun Jun 7 23:48:00 2026 -0500
+
+    feat(ui): add pause menu, level up screen and main menu
+    
+    - Add PauseMenu with Escape toggle and continue/exit buttons
+    - Add MainMenu scene with play and exit buttons
+    - Fix UpgradeManager by adding MissileBarrage to WeaponType enum
+    - Refactor Shotgun and MissileBarrage to use base class projectiles field
+    - Add 6 new upgrades for Shotgun and MissileBarrage
+    - Separate MainMenu and Game into independent scenes
+
+[33mcommit 63eb428212b0abcbf4d7354ea3fc1244472c5460[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Fri Jun 5 12:32:09 2026 -0500
+
+    feat(ui): add game over screen with fade effect
+    
+    - Add GameOverUi with coroutine-based panel fade (unscaledDeltaTime)
+    - Add GameOverButtons with retry and main menu functionality
+    - Update PlayerHealth to trigger GameOverUi on death and freeze time
+
+[33mcommit 8989d5fe0f90e8c9b4c728df90329023ba434c6e[m
+Author: EddyZamora <eddyzamora021@gmail.com>
+Date:   Thu Jun 4 09:53:14 2026 -0500
+
+    Primer Commit

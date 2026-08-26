@@ -40,16 +40,17 @@ public class PlayerMovement : MonoBehaviour
 
         // mover nave
         transform.position += (Vector3)(velocity * Time.deltaTime);
-
-        float targetTilt = -h * tiltAmount;
-
-        Quaternion targetRotation = Quaternion.Euler(0, 0, targetTilt);
-
-        transform.rotation = Quaternion.Lerp(
-            transform.rotation,
-            targetRotation,
-            tiltSpeed * Time.deltaTime
-        );
+        
+        if(velocity.x != 0 && velocity.y != 0)
+        {
+            float targetTilt = -h * tiltAmount;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetTilt);
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
+                targetRotation,
+                tiltSpeed * Time.deltaTime
+            );
+        }
     }
 
     void FixedUpdate()
